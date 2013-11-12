@@ -30,7 +30,7 @@ main = do
   let state = EvState { evIcon = icon
                       , evNewMailDir = dir
                       }
-  fm <- fileMonitorDirectory (fileFromPath (B.pack dir)) [] Nothing
+  fm <- fileMonitorDirectory (fileFromPath (B.pack dir)) [FileMonitorSendMoved] Nothing
   updateMailStatus state -- set icon right initially
   fm `on ` fileMonitorChanged $ evHandler state
   mainGUI
